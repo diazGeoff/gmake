@@ -1,6 +1,6 @@
 {
     "name": "gmake",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Basic Web Development Tool",
     "main": "gmake.js",
     "dependencies": {
@@ -15,7 +15,7 @@
         "url": "https://github.com/diazGeoff/gmake.git"
     },
     "bin" : {
-        "gmake": "/usr/bin/gmake"
+        "gmake": "gmake.js"
     },
     "keywords": [
         "web",
