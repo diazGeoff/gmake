@@ -4,6 +4,7 @@ module.exports = {
                 "   \<head\>\n" +
                 "       \<title\>\</title\>\n" +
                 "   \</head\>\n" +
+                "\<link rel=\"stylesheet\" src=\"css/style.css\"/\>" +
                 "   \<body\>\n" +
                 "\n" +
                 "   \</body\>\n" +
