@@ -30,7 +30,7 @@ program.command('create-app [string]')
                         res.pipe(fs.createWriteStream(loc + "/js/jquery.min.js"));
                         var holder = template.index.split("\n");
                         var indexString = "";
-                        holder[4] += "\n   \<script src=\"js/jquery.min.js\"\>\</script\>";
+                        holder[5] += "\n   \<script src=\"js/jquery.min.js\"\>\</script\>";
                         for(var iterate = 0; iterate < holder.length; iterate ++){
                             indexString += holder[iterate] + "\n";
                         }
@@ -44,11 +44,9 @@ program.command('create-app [string]')
         });
 
     });
-program.option('-f, --full', 'Create a Full Webpage Project', fullCreate);
-program.option('-v, --version [version]', 'Version for Jquery', jqueryVersion);
+
 program.command('install [dependencies]')
     .description('Install Other Dependencies')
-    .option('-v, --version', 'Angular Version',angularVersion)
     .action(function(dependencies) {
         if(dependencies.toLowerCase() === "angular") {
             http.get("http://ajax.googleapis.com/ajax/libs/angularjs/" + angular + "/angular.min.js", function (res) {
@@ -56,9 +54,15 @@ program.command('install [dependencies]')
                     console.log('There\'s an error in the version');
                     throw new UserException('Exit Download AngularJS');
                 } else {
+                    console.log(angular);
                     if (fs.existsSync('./js')) {
                         res.pipe(fs.createWriteStream('./js/angular.min.js'));
                         console.log('Successfully Installed');
+                        fs.readFile('./index.html', 'utf-8', function(err, data) {
+                            if(err) throw err;
+                            data = data.toString().split('\<link rel=\"stylesheet\" src=\"css/style.css\"/\>').join('\<link rel=\"stylesheet\" src=\"css/style.css\"/\>\n   \<script src=\"js/angular.min.js\">\</script>');
+                            fs.writeFile('./index.html', data);
+                        });
                     } else {
                         console.log('js folder doesn\'t exists');
                     }
@@ -66,6 +70,9 @@ program.command('install [dependencies]')
             });
         }
     });
+program.option('-f, --full', 'Create a Full Webpage Project', fullCreate);
+program.option('-j [version], --jquery-version [version]', 'Version for Jquery', jqueryVersion);
+program.option('-a [version], --angular-version [version]', 'Angular Version', angularVersion);
 program.parse(process.argv);
 
 function fullCreate(){
