@@ -54,7 +54,7 @@ program.command('install [dependencies]')
                     console.log('There\'s an error in the version');
                     throw new UserException('Exit Download AngularJS');
                 } else {
-                    console.log(angular);
+                    console.log('Angular Version ' + angular);
                     if (fs.existsSync('./js')) {
                         res.pipe(fs.createWriteStream('./js/angular.min.js'));
                         console.log('Successfully Installed');
