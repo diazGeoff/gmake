@@ -1,6 +1,6 @@
 {
     "name": "gmake",
-    "version": "1.0.1",
+    "version": "1.0.7",
     "description": "Basic Web Development Tool",
     "main": "gmake.js",
     "dependencies": {
