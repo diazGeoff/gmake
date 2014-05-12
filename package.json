@@ -1,0 +1,32 @@
+{
+    "name": "gmake",
+    "version": "1.0.2",
+    "description": "Basic Web Development Tool",
+    "main": "gmake.js",
+    "dependencies": {
+        "commander": "^2.2.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/diazGeoff/gmake.git"
+    },
+    "bin" : {
+        "gmake": "./bin/gmake"
+    },
+    "keywords": [
+        "web",
+        "command",
+        "line",
+        "tool"
+    ],
+    "author": "Geoff Diaz",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/diazGeoff/gmake/issues"
+    },
+    "homepage": "https://github.com/diazGeoff/gmake"
+}
