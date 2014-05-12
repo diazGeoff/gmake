@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 var program = require('commander');
 var http = require('http');
+var template = require('./template/app');
 var fs = require('fs');
 var jquery = "1.11.0",
     angular = "1.2.15",
@@ -24,23 +25,18 @@ program.command('create-app [string]')
                     fs.mkdirSync(loc + '/image/');
                     fs.mkdirSync(loc + '/css/');
                     fs.writeFile(loc + "/css/style.css", '');
-                    fs.createReadStream('template/app.js').pipe(fs.createWriteStream(loc + "/js/app.js"));
+                    fs.writeFile(loc + "/js/app.js", template.app);
                     if(fullInstall){
                         res.pipe(fs.createWriteStream(loc + "/js/jquery.min.js"));
-                        fs.readFile('template/index.html', function(err, data){
-                            if(err)throw err;
-
-                            var array = data.toString().split("\n");
-                            array[4] = array[4] + "\n" +
-                                "   \<script\ src=\"js/jquery.min.js\"> \</script\>";
-                            var index = "";
-                            for(var i = 0; i < array.length; i ++) {
-                                index += array[i] + "\n";
-                            }
-                            fs.writeFile(loc + '/index.html', index, error);
-                        });
+                        var holder = template.index.split("\n");
+                        var indexString = "";
+                        holder[4] += "\n   \<script src=\"js/jquery.min.js\"\>\</script\>";
+                        for(var iterate = 0; iterate < holder.length; iterate ++){
+                            indexString += holder[iterate] + "\n";
+                        }
+                        fs.writeFile(loc + '/index.html', indexString);
                     }else{
-                        fs.createReadStream('template/index.html').pipe(fs.createWriteStream(loc + "/index.html"));
+                        fs.writeFile(loc + '/index.html', template.index);
                     }
                     console.log("Project " + project + " Successfully Created");
                 }
