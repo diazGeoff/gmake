@@ -15,7 +15,7 @@
         "url": "https://github.com/diazGeoff/gmake.git"
     },
     "bin" : {
-        "gmake": "./bin/gmake"
+        "gmake": "/usr/bin/gmake"
     },
     "keywords": [
         "web",
